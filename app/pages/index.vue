@@ -6,11 +6,11 @@
     :links="links"
   />
 
-  <ShareThought v-if="modal.isOpen" @close="modal.close()" />
+  <ShareWhisperModal v-if="modal.isOpen" @close="modal.close()" />
 </template>
 <script lang="ts" setup>
 import type { ButtonProps } from "@nuxt/ui";
-import ShareThought from "~/components/ShareThought.vue";
+import ShareWhisperModal from "~/components/Modals/ShareWhisperModal.vue";
 
 const links = ref<ButtonProps[]>([
   {
@@ -24,11 +24,12 @@ const links = ref<ButtonProps[]>([
     to: "#",
     variant: "outline",
     size: "xl",
+    color: "primary",
   },
 ]);
 
 const overlay = useOverlay()
-const modal = overlay.create(ShareThought)
+const modal = overlay.create(ShareWhisperModal)
 
 function openModal() {
   modal.open()
