@@ -13,6 +13,12 @@ datasource db {
   provider = "postgresql"
 }
 
+model Whisper {
+  id        Int      @id @default(autoincrement())
+  category  Category
+  thought   String
+  createdAt DateTime @default(now())
+}
 
 enum Category {
   stress

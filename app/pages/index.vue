@@ -6,28 +6,18 @@
     :links="links"
   />
 
-  <UPageSection title="Categories" description="Explore the different categories of thoughts and responses on Whisper Wall. Whether you're looking to share your own experiences or support others, there's a category for everyone.">
-    <template #features>
-      <UPageCard v-for="c in categories" :key="c" :title="c" icon="i-lucide-hand-helping" class="capitalize" />
-    </template>
-  </UPageSection>
-
-  <UPageSection title="Responses" description="Explore the different categories of responses on Whisper Wall. Whether you're looking to share your own experiences or support others, there's a category for everyone.">
-    <template #features>
-      <UPageCard v-for="c in responseCategories" :key="c" :title="c" icon="i-heroicons-hand-raised-solid" class="capitalize" />
-    </template>
-  </UPageSection>
+  <ShareThought v-if="modal.isOpen" @close="modal.close()" />
 </template>
 <script lang="ts" setup>
 import type { ButtonProps } from "@nuxt/ui";
-import { Category, ResponseCategory } from "~~/prisma/generated/client/enums";
+import ShareThought from "~/components/ShareThought.vue";
 
 const links = ref<ButtonProps[]>([
   {
     label: "Share a thought",
-    to: "#",
     variant: "solid",
     size: "xl",
+    onClick: openModal,
   },
   {
     label: "Support someone",
@@ -37,6 +27,10 @@ const links = ref<ButtonProps[]>([
   },
 ]);
 
-const categories = Object.values(Category);
-const responseCategories = Object.values(ResponseCategory);
+const overlay = useOverlay()
+const modal = overlay.create(ShareThought)
+
+function openModal() {
+  modal.open()
+}
 </script>

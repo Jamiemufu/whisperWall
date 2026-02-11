@@ -1,2 +1,16 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme static {
+  --color-calm-50: #DDE8FF;
+  --color-calm-100: #BFD1FB;
+  --color-calm-200: #A7C0F7;
+  --color-calm-300: #8FB2F5;
+  --color-calm-400: #6E98EA;
+  --color-calm-500: #4E7DD8;
+  --color-calm-600: #3D6DCE;
+  --color-calm-700: #2F62C3;
+  --color-calm-800: #284E98;
+  --color-calm-900: #203F7A;
+  --color-calm-950: #1a2f5a;
+}

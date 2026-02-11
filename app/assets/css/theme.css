@@ -1,0 +1,14 @@
+:root {
+  --bg: #F8FAFF;
+  --panel: #F1F5FF;
+  --panel-strong: #E8EFFF;
+
+  --fg: #0F172A;
+  --fg-muted: #334155;
+  --fg-soft: #64748B;
+
+  --border: #D6E1FF;
+  --focus: #93C5FD;
+  --shadow-blue: 38, 94, 190;
+}
+html, body { background: var(--bg); color: var(--fg); }
