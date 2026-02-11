@@ -6,9 +6,36 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../server/prisma-client"
+  output   = "./generated/client"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+
+enum Category {
+  stress
+  relationship
+  work
+  family
+  motivation
+  purpose
+  life
+  finance
+  health
+  other
+}
+
+enum ResponseCategory {
+  advice
+  empathy
+  encouragement
+  humor
+  perspective
+  validation
+  support
+  resources
+  motivation
+  other
 }
