@@ -28,62 +28,98 @@ export type AggregateWhisper = {
 
 export type WhisperAvgAggregateOutputType = {
   id: number | null
+  likes: number | null
+  loves: number | null
+  supports: number | null
 }
 
 export type WhisperSumAggregateOutputType = {
   id: number | null
+  likes: number | null
+  loves: number | null
+  supports: number | null
 }
 
 export type WhisperMinAggregateOutputType = {
   id: number | null
   category: $Enums.Category | null
-  thought: string | null
+  content: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  likes: number | null
+  loves: number | null
+  supports: number | null
 }
 
 export type WhisperMaxAggregateOutputType = {
   id: number | null
   category: $Enums.Category | null
-  thought: string | null
+  content: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  likes: number | null
+  loves: number | null
+  supports: number | null
 }
 
 export type WhisperCountAggregateOutputType = {
   id: number
   category: number
-  thought: number
+  content: number
   createdAt: number
+  updatedAt: number
+  likes: number
+  loves: number
+  supports: number
   _all: number
 }
 
 
 export type WhisperAvgAggregateInputType = {
   id?: true
+  likes?: true
+  loves?: true
+  supports?: true
 }
 
 export type WhisperSumAggregateInputType = {
   id?: true
+  likes?: true
+  loves?: true
+  supports?: true
 }
 
 export type WhisperMinAggregateInputType = {
   id?: true
   category?: true
-  thought?: true
+  content?: true
   createdAt?: true
+  updatedAt?: true
+  likes?: true
+  loves?: true
+  supports?: true
 }
 
 export type WhisperMaxAggregateInputType = {
   id?: true
   category?: true
-  thought?: true
+  content?: true
   createdAt?: true
+  updatedAt?: true
+  likes?: true
+  loves?: true
+  supports?: true
 }
 
 export type WhisperCountAggregateInputType = {
   id?: true
   category?: true
-  thought?: true
+  content?: true
   createdAt?: true
+  updatedAt?: true
+  likes?: true
+  loves?: true
+  supports?: true
   _all?: true
 }
 
@@ -176,8 +212,12 @@ export type WhisperGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type WhisperGroupByOutputType = {
   id: number
   category: $Enums.Category
-  thought: string
+  content: string
   createdAt: Date
+  updatedAt: Date
+  likes: number
+  loves: number
+  supports: number
   _count: WhisperCountAggregateOutputType | null
   _avg: WhisperAvgAggregateOutputType | null
   _sum: WhisperSumAggregateOutputType | null
@@ -206,15 +246,23 @@ export type WhisperWhereInput = {
   NOT?: Prisma.WhisperWhereInput | Prisma.WhisperWhereInput[]
   id?: Prisma.IntFilter<"Whisper"> | number
   category?: Prisma.EnumCategoryFilter<"Whisper"> | $Enums.Category
-  thought?: Prisma.StringFilter<"Whisper"> | string
+  content?: Prisma.StringFilter<"Whisper"> | string
   createdAt?: Prisma.DateTimeFilter<"Whisper"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Whisper"> | Date | string
+  likes?: Prisma.IntFilter<"Whisper"> | number
+  loves?: Prisma.IntFilter<"Whisper"> | number
+  supports?: Prisma.IntFilter<"Whisper"> | number
 }
 
 export type WhisperOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  thought?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type WhisperWhereUniqueInput = Prisma.AtLeast<{
@@ -223,15 +271,23 @@ export type WhisperWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.WhisperWhereInput[]
   NOT?: Prisma.WhisperWhereInput | Prisma.WhisperWhereInput[]
   category?: Prisma.EnumCategoryFilter<"Whisper"> | $Enums.Category
-  thought?: Prisma.StringFilter<"Whisper"> | string
+  content?: Prisma.StringFilter<"Whisper"> | string
   createdAt?: Prisma.DateTimeFilter<"Whisper"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Whisper"> | Date | string
+  likes?: Prisma.IntFilter<"Whisper"> | number
+  loves?: Prisma.IntFilter<"Whisper"> | number
+  supports?: Prisma.IntFilter<"Whisper"> | number
 }, "id">
 
 export type WhisperOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  thought?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
   _count?: Prisma.WhisperCountOrderByAggregateInput
   _avg?: Prisma.WhisperAvgOrderByAggregateInput
   _max?: Prisma.WhisperMaxOrderByAggregateInput
@@ -245,83 +301,133 @@ export type WhisperScalarWhereWithAggregatesInput = {
   NOT?: Prisma.WhisperScalarWhereWithAggregatesInput | Prisma.WhisperScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
   category?: Prisma.EnumCategoryWithAggregatesFilter<"Whisper"> | $Enums.Category
-  thought?: Prisma.StringWithAggregatesFilter<"Whisper"> | string
+  content?: Prisma.StringWithAggregatesFilter<"Whisper"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Whisper"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Whisper"> | Date | string
+  likes?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
+  loves?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
+  supports?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
 }
 
 export type WhisperCreateInput = {
   category: $Enums.Category
-  thought: string
+  content: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: number
+  loves?: number
+  supports?: number
 }
 
 export type WhisperUncheckedCreateInput = {
   id?: number
   category: $Enums.Category
-  thought: string
+  content: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: number
+  loves?: number
+  supports?: number
 }
 
 export type WhisperUpdateInput = {
   category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
-  thought?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type WhisperUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
-  thought?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type WhisperCreateManyInput = {
   id?: number
   category: $Enums.Category
-  thought: string
+  content: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: number
+  loves?: number
+  supports?: number
 }
 
 export type WhisperUpdateManyMutationInput = {
   category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
-  thought?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type WhisperUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
-  thought?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type WhisperCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  thought?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type WhisperAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type WhisperMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  thought?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type WhisperMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  thought?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type WhisperSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  likes?: Prisma.SortOrder
+  loves?: Prisma.SortOrder
+  supports?: Prisma.SortOrder
 }
 
 export type EnumCategoryFieldUpdateOperationsInput = {
@@ -349,32 +455,48 @@ export type IntFieldUpdateOperationsInput = {
 export type WhisperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   category?: boolean
-  thought?: boolean
+  content?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  likes?: boolean
+  loves?: boolean
+  supports?: boolean
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   category?: boolean
-  thought?: boolean
+  content?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  likes?: boolean
+  loves?: boolean
+  supports?: boolean
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   category?: boolean
-  thought?: boolean
+  content?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  likes?: boolean
+  loves?: boolean
+  supports?: boolean
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectScalar = {
   id?: boolean
   category?: boolean
-  thought?: boolean
+  content?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  likes?: boolean
+  loves?: boolean
+  supports?: boolean
 }
 
-export type WhisperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "thought" | "createdAt", ExtArgs["result"]["whisper"]>
+export type WhisperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "content" | "createdAt" | "updatedAt" | "likes" | "loves" | "supports", ExtArgs["result"]["whisper"]>
 
 export type $WhisperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Whisper"
@@ -382,8 +504,12 @@ export type $WhisperPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     category: $Enums.Category
-    thought: string
+    content: string
     createdAt: Date
+    updatedAt: Date
+    likes: number
+    loves: number
+    supports: number
   }, ExtArgs["result"]["whisper"]>
   composites: {}
 }
@@ -809,8 +935,12 @@ export interface Prisma__WhisperClient<T, Null = never, ExtArgs extends runtime.
 export interface WhisperFieldRefs {
   readonly id: Prisma.FieldRef<"Whisper", 'Int'>
   readonly category: Prisma.FieldRef<"Whisper", 'Category'>
-  readonly thought: Prisma.FieldRef<"Whisper", 'String'>
+  readonly content: Prisma.FieldRef<"Whisper", 'String'>
   readonly createdAt: Prisma.FieldRef<"Whisper", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Whisper", 'DateTime'>
+  readonly likes: Prisma.FieldRef<"Whisper", 'Int'>
+  readonly loves: Prisma.FieldRef<"Whisper", 'Int'>
+  readonly supports: Prisma.FieldRef<"Whisper", 'Int'>
 }
     
 

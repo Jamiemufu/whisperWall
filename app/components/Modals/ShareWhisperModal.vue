@@ -3,6 +3,8 @@
     title="Share a whisper"
     class="bg-primary-100 rounded-2xl"
     :ui="{
+      overlay: 'backdrop-blur-sm flex items-center justify-center p-4',
+      content: 'max-w-2xl',
       header: 'border-0 items-center',
       title: 'text-2xl font-bold',
       body: 'pt-2!',
@@ -49,7 +51,7 @@
               label: 'font-bold',
             }"
           >
-            <UTextarea v-model="state.thought" class="w-full text-base pt-2" placeholder="Enter your whisper here..." size="xl" :rows="5" required />
+            <UTextarea v-model="state.whisper" class="w-full text-base pt-2" placeholder="Enter your whisper here..." size="xl" :rows="5" required />
           </UFormField>
         </div>
 
@@ -61,15 +63,39 @@
 <script lang="ts" setup>
 import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
+const toast = useToast()
+
+const emits = defineEmits(["close"]);
 
 type Schema = z.infer<typeof shareWhisperSchema>;
 
 const state = reactive<Partial<Schema>>({
   category: undefined,
-  thought: "",
+  whisper: "",
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  console.log(event.data);
+  try {
+    await $fetch("/api/whisper", {
+      method: "POST",
+      body: event.data,
+    });
+    // Emit the close event to close the modal
+    emits("close");
+    // Show a success toast notification
+    toast.add({
+      title: "Whisper posted!",
+      description: "Your whisper has been shared on the wall.",
+      color: "info",
+      icon: "i-heroicons-check-circle-solid",
+    });
+  } catch (error) {
+    toast.add({
+      title: "Error posting whisper",
+      description: "Something went wrong. Please try again.",
+      color: "error",
+      icon: "i-heroicons-x-circle-solid",
+    });
+  }
 }
 </script>

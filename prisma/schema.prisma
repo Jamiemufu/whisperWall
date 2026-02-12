@@ -16,8 +16,12 @@ datasource db {
 model Whisper {
   id        Int      @id @default(autoincrement())
   category  Category
-  thought   String
+  content   String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  likes     Int      @default(0)
+  loves     Int      @default(0)
+  supports  Int      @default(0)
 }
 
 enum Category {

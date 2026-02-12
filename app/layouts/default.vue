@@ -1,5 +1,5 @@
 <template>
-  <UContainer>
+  <UPage>
     <slot />
-  </UContainer>
+  </UPage>
 </template>

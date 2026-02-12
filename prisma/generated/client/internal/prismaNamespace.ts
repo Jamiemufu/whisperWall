@@ -520,8 +520,12 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const WhisperScalarFieldEnum = {
   id: 'id',
   category: 'category',
-  thought: 'thought',
-  createdAt: 'createdAt'
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  likes: 'likes',
+  loves: 'loves',
+  supports: 'supports'
 } as const
 
 export type WhisperScalarFieldEnum = (typeof WhisperScalarFieldEnum)[keyof typeof WhisperScalarFieldEnum]

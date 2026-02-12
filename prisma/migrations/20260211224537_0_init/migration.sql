@@ -8,8 +8,9 @@ CREATE TYPE "ResponseCategory" AS ENUM ('advice', 'empathy', 'encouragement', 'h
 CREATE TABLE "Whisper" (
     "id" SERIAL NOT NULL,
     "category" "Category" NOT NULL,
-    "thought" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Whisper_pkey" PRIMARY KEY ("id")
 );
