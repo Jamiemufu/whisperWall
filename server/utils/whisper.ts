@@ -1,15 +1,18 @@
-import { Whisper } from "~~/prisma/generated/client/client";
+import { Whisper, Response } from "~~/prisma/generated/client/client";
 import { Category } from "~~/prisma/generated/client/enums";
 
 /**
  * Get all whispers from the database, ordered by creation date (newest first).
  * @returns Whisper[] - An array of Whisper objects.
  */
-export const getWhispers = async (take?: number): Promise<Whisper[]> => {
+export const getWhispers = async (take?: number): Promise<(Whisper & { responses: Response[] })[]> => {
   return await prisma.whisper.findMany({
     take: take,
     orderBy: {
       createdAt: "desc",
+    },
+    include: {
+      responses: true,
     },
   });
 }
@@ -43,12 +46,71 @@ export const getWhispersByCategory = async (category: Category): Promise<Whisper
   });
 }
 
-// create top level whisper
-export const createWhisper = async (category: Category, whisper: string): Promise<Whisper> => {
+/**
+ * 
+ * @param category Whisper Category
+ * @param content string content
+ * @returns Whisper
+ */
+export const createWhisper = async (category: Category, content: string): Promise<Whisper> => {
   return await prisma.whisper.create({
     data: {
       category,
-      content: whisper,
+      content: content,
     },
   });
+}
+
+/**
+ * Increment the love count of a whisper by 1.
+ * @param whisperId Whisper ID
+ * @returns Whisper
+ */
+export const giveWhisperLove = async (whisperId: number): Promise<Whisper | null> => {
+  return await prisma.whisper.update({
+    where: {
+      id: whisperId,
+    },
+    data: {
+      loves: {
+        increment: 1,
+      },
+    }
+  })
+}
+
+/**
+ * increment the like count of a whisper by 1.
+ * @param whisperId Whisper Id
+ * @returns Whisper
+ */
+export const giveWhisperLikes = async (whisperId: number): Promise<Whisper | null> => {
+  return await prisma.whisper.update({
+    where: {
+      id: whisperId,
+    },
+    data: {
+      likes: {
+        increment: 1,
+      },
+    }
+  })
+}
+
+/**
+ * increment the Supports count of a whisper by 1.
+ * @param whisperId Whisper Id
+ * @returns Whisper
+ */
+export const giveWhisperSupports = async (whisperId: number): Promise<Whisper | null> => {
+  return await prisma.whisper.update({
+    where: {
+      id: whisperId,
+    },
+    data: {
+      supports: {
+        increment: 1,
+      },
+    }
+  })
 }

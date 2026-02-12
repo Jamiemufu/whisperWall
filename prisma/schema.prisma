@@ -22,6 +22,24 @@ model Whisper {
   likes     Int      @default(0)
   loves     Int      @default(0)
   supports  Int      @default(0)
+  responses Response[]
+}
+
+model Response {
+  id               Int              @id @default(autoincrement())
+  whisperId        Int
+  category         ResponseCategory
+  content          String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  
+  // Link to the whisper
+  whisper          Whisper          @relation(fields: [whisperId], references: [id], onDelete: Cascade)
+  
+  // Self-referential for threaded replies
+  parentId         Int?
+  parent           Response?        @relation("ResponseThreads", fields: [parentId], references: [id], onDelete: Cascade)
+  replies          Response[]       @relation("ResponseThreads")
 }
 
 enum Category {

@@ -21,9 +21,9 @@
 <script lang="ts" setup>
 import type { ButtonProps } from "@nuxt/ui";
 import ShareWhisperModal from "~/components/Modals/ShareWhisperModal.vue";
-import type { Whisper } from "~~/prisma/generated/client/client";
+import type { Whisper, Response } from "~~/prisma/generated/client/client";
 
-const { data } = await useAsyncData("whispers", () => $fetch<Whisper[]>("/api/whisper"), {
+const { data } = await useAsyncData("whispers", () => $fetch<(Whisper & { responses: Response[] })[]>("/api/whisper"), {
   immediate: true,
 });
 

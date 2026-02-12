@@ -22,3 +22,8 @@ export * from './enums.js';
  * 
  */
 export type Whisper = Prisma.WhisperModel
+/**
+ * Model Response
+ * 
+ */
+export type Response = Prisma.ResponseModel

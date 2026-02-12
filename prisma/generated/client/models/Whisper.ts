@@ -252,6 +252,7 @@ export type WhisperWhereInput = {
   likes?: Prisma.IntFilter<"Whisper"> | number
   loves?: Prisma.IntFilter<"Whisper"> | number
   supports?: Prisma.IntFilter<"Whisper"> | number
+  responses?: Prisma.ResponseListRelationFilter
 }
 
 export type WhisperOrderByWithRelationInput = {
@@ -263,6 +264,7 @@ export type WhisperOrderByWithRelationInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  responses?: Prisma.ResponseOrderByRelationAggregateInput
 }
 
 export type WhisperWhereUniqueInput = Prisma.AtLeast<{
@@ -277,6 +279,7 @@ export type WhisperWhereUniqueInput = Prisma.AtLeast<{
   likes?: Prisma.IntFilter<"Whisper"> | number
   loves?: Prisma.IntFilter<"Whisper"> | number
   supports?: Prisma.IntFilter<"Whisper"> | number
+  responses?: Prisma.ResponseListRelationFilter
 }, "id">
 
 export type WhisperOrderByWithAggregationInput = {
@@ -317,6 +320,7 @@ export type WhisperCreateInput = {
   likes?: number
   loves?: number
   supports?: number
+  responses?: Prisma.ResponseCreateNestedManyWithoutWhisperInput
 }
 
 export type WhisperUncheckedCreateInput = {
@@ -328,6 +332,7 @@ export type WhisperUncheckedCreateInput = {
   likes?: number
   loves?: number
   supports?: number
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutWhisperInput
 }
 
 export type WhisperUpdateInput = {
@@ -338,6 +343,7 @@ export type WhisperUpdateInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  responses?: Prisma.ResponseUpdateManyWithoutWhisperNestedInput
 }
 
 export type WhisperUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type WhisperUncheckedUpdateInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutWhisperNestedInput
 }
 
 export type WhisperCreateManyInput = {
@@ -430,6 +437,11 @@ export type WhisperSumOrderByAggregateInput = {
   supports?: Prisma.SortOrder
 }
 
+export type WhisperScalarRelationFilter = {
+  is?: Prisma.WhisperWhereInput
+  isNot?: Prisma.WhisperWhereInput
+}
+
 export type EnumCategoryFieldUpdateOperationsInput = {
   set?: $Enums.Category
 }
@@ -450,6 +462,107 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type WhisperCreateNestedOneWithoutResponsesInput = {
+  create?: Prisma.XOR<Prisma.WhisperCreateWithoutResponsesInput, Prisma.WhisperUncheckedCreateWithoutResponsesInput>
+  connectOrCreate?: Prisma.WhisperCreateOrConnectWithoutResponsesInput
+  connect?: Prisma.WhisperWhereUniqueInput
+}
+
+export type WhisperUpdateOneRequiredWithoutResponsesNestedInput = {
+  create?: Prisma.XOR<Prisma.WhisperCreateWithoutResponsesInput, Prisma.WhisperUncheckedCreateWithoutResponsesInput>
+  connectOrCreate?: Prisma.WhisperCreateOrConnectWithoutResponsesInput
+  upsert?: Prisma.WhisperUpsertWithoutResponsesInput
+  connect?: Prisma.WhisperWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WhisperUpdateToOneWithWhereWithoutResponsesInput, Prisma.WhisperUpdateWithoutResponsesInput>, Prisma.WhisperUncheckedUpdateWithoutResponsesInput>
+}
+
+export type WhisperCreateWithoutResponsesInput = {
+  category: $Enums.Category
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: number
+  loves?: number
+  supports?: number
+}
+
+export type WhisperUncheckedCreateWithoutResponsesInput = {
+  id?: number
+  category: $Enums.Category
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: number
+  loves?: number
+  supports?: number
+}
+
+export type WhisperCreateOrConnectWithoutResponsesInput = {
+  where: Prisma.WhisperWhereUniqueInput
+  create: Prisma.XOR<Prisma.WhisperCreateWithoutResponsesInput, Prisma.WhisperUncheckedCreateWithoutResponsesInput>
+}
+
+export type WhisperUpsertWithoutResponsesInput = {
+  update: Prisma.XOR<Prisma.WhisperUpdateWithoutResponsesInput, Prisma.WhisperUncheckedUpdateWithoutResponsesInput>
+  create: Prisma.XOR<Prisma.WhisperCreateWithoutResponsesInput, Prisma.WhisperUncheckedCreateWithoutResponsesInput>
+  where?: Prisma.WhisperWhereInput
+}
+
+export type WhisperUpdateToOneWithWhereWithoutResponsesInput = {
+  where?: Prisma.WhisperWhereInput
+  data: Prisma.XOR<Prisma.WhisperUpdateWithoutResponsesInput, Prisma.WhisperUncheckedUpdateWithoutResponsesInput>
+}
+
+export type WhisperUpdateWithoutResponsesInput = {
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type WhisperUncheckedUpdateWithoutResponsesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  loves?: Prisma.IntFieldUpdateOperationsInput | number
+  supports?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+
+/**
+ * Count Type WhisperCountOutputType
+ */
+
+export type WhisperCountOutputType = {
+  responses: number
+}
+
+export type WhisperCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  responses?: boolean | WhisperCountOutputTypeCountResponsesArgs
+}
+
+/**
+ * WhisperCountOutputType without action
+ */
+export type WhisperCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WhisperCountOutputType
+   */
+  select?: Prisma.WhisperCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * WhisperCountOutputType without action
+ */
+export type WhisperCountOutputTypeCountResponsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ResponseWhereInput
+}
 
 
 export type WhisperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -461,6 +574,8 @@ export type WhisperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   likes?: boolean
   loves?: boolean
   supports?: boolean
+  responses?: boolean | Prisma.Whisper$responsesArgs<ExtArgs>
+  _count?: boolean | Prisma.WhisperCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -497,10 +612,18 @@ export type WhisperSelectScalar = {
 }
 
 export type WhisperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "content" | "createdAt" | "updatedAt" | "likes" | "loves" | "supports", ExtArgs["result"]["whisper"]>
+export type WhisperInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  responses?: boolean | Prisma.Whisper$responsesArgs<ExtArgs>
+  _count?: boolean | Prisma.WhisperCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type WhisperIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type WhisperIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $WhisperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Whisper"
-  objects: {}
+  objects: {
+    responses: Prisma.$ResponsePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     category: $Enums.Category
@@ -904,6 +1027,7 @@ readonly fields: WhisperFieldRefs;
  */
 export interface Prisma__WhisperClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  responses<T extends Prisma.Whisper$responsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Whisper$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -958,6 +1082,10 @@ export type WhisperFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * Filter, which Whisper to fetch.
    */
   where: Prisma.WhisperWhereUniqueInput
@@ -976,6 +1104,10 @@ export type WhisperFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * Filter, which Whisper to fetch.
    */
   where: Prisma.WhisperWhereUniqueInput
@@ -993,6 +1125,10 @@ export type WhisperFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Whisper
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
   /**
    * Filter, which Whisper to fetch.
    */
@@ -1042,6 +1178,10 @@ export type WhisperFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * Filter, which Whisper to fetch.
    */
   where?: Prisma.WhisperWhereInput
@@ -1090,6 +1230,10 @@ export type WhisperFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * Filter, which Whispers to fetch.
    */
   where?: Prisma.WhisperWhereInput
@@ -1132,6 +1276,10 @@ export type WhisperCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Whisper
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
   /**
    * The data needed to create a Whisper.
    */
@@ -1180,6 +1328,10 @@ export type WhisperUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Whisper
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
   /**
    * The data needed to update a Whisper.
    */
@@ -1247,6 +1399,10 @@ export type WhisperUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * The filter to search for the Whisper to update in case it exists.
    */
   where: Prisma.WhisperWhereUniqueInput
@@ -1273,6 +1429,10 @@ export type WhisperDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
+  /**
    * Filter which Whisper to delete.
    */
   where: Prisma.WhisperWhereUniqueInput
@@ -1293,6 +1453,30 @@ export type WhisperDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Whisper.responses
+ */
+export type Whisper$responsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Response
+   */
+  select?: Prisma.ResponseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Response
+   */
+  omit?: Prisma.ResponseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResponseInclude<ExtArgs> | null
+  where?: Prisma.ResponseWhereInput
+  orderBy?: Prisma.ResponseOrderByWithRelationInput | Prisma.ResponseOrderByWithRelationInput[]
+  cursor?: Prisma.ResponseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ResponseScalarFieldEnum | Prisma.ResponseScalarFieldEnum[]
+}
+
+/**
  * Whisper without action
  */
 export type WhisperDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1304,4 +1488,8 @@ export type WhisperDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Whisper
    */
   omit?: Prisma.WhisperOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhisperInclude<ExtArgs> | null
 }

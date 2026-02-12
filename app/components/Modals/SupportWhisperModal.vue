@@ -1,6 +1,6 @@
 <template>
   <UModal
-    title="Share a whisper"
+    title="Support the whisper"
     class="bg-primary-100 bg-[url(/img/clouds.png)] bg-cover rounded-2xl"
     :ui="{
       overlay: 'backdrop-blur-sm flex items-center justify-center p-4',
@@ -11,26 +11,29 @@
     }"
   >
     <template #body>
-      <UForm class="pt-0!" :state="state" :schema="shareWhisperSchema" @submit="onSubmit">
+      <UForm class="pt-0!" :state="state" :schema="supportWhisperSchema" @submit="onSubmit">
+        <div class="bg-white p-4 rounded-2xl mb-4 font-semibold">
+          {{ whisperContent }}
+        </div>
         <div class="bg-white p-4 rounded-2xl mb-4">
           <UFormField
             label="Pick a Category"
-            name="category"
+            name="responseCategory"
             class="text-base"
             :ui="{
               label: 'font-bold',
             }"
           >
             <URadioGroup
-              v-model="state.category"
-              :items="categoriesRadioItems"
-              size="xl"
+              v-model="state.responseCategory"
+              :items="supportWhisperCategories"
+              size="sm"
               variant="table"
               required
               :ui="{
                 label: 'capitalize',
                 fieldset: 'py-4',
-                item: 'items-center',
+                item: 'items-center text-base',
               }"
             >
               <template #label="{ item }">
@@ -67,16 +70,28 @@ const toast = useToast()
 
 const emits = defineEmits(["close"]);
 
-type Schema = z.infer<typeof shareWhisperSchema>;
+const props = defineProps({
+  whisperContent: {
+    type: String,
+    required: true,
+  },
+  whisperId: {
+    type: Number,
+    required: true,
+  },
+});
+
+type Schema = z.infer<typeof supportWhisperSchema>;
 
 const state = reactive<Partial<Schema>>({
-  category: undefined,
+  whisperId: props.whisperId,
+  responseCategory: undefined,
   whisper: "",
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   try {
-    await $fetch("/api/whisper/create", {
+    await $fetch("/api/whisper/reply", {
       method: "POST",
       body: event.data,
     });
