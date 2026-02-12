@@ -11,4 +11,5 @@
   --focus: #93C5FD;
   --shadow-blue: 38, 94, 190;
 }
+html { color-scheme: light; }
 html, body { background: var(--bg); color: var(--fg); }
