@@ -49,6 +49,8 @@ export type WhisperMinAggregateOutputType = {
   likes: number | null
   loves: number | null
   supports: number | null
+  password: string | null
+  userId: string | null
 }
 
 export type WhisperMaxAggregateOutputType = {
@@ -60,6 +62,8 @@ export type WhisperMaxAggregateOutputType = {
   likes: number | null
   loves: number | null
   supports: number | null
+  password: string | null
+  userId: string | null
 }
 
 export type WhisperCountAggregateOutputType = {
@@ -71,6 +75,8 @@ export type WhisperCountAggregateOutputType = {
   likes: number
   loves: number
   supports: number
+  password: number
+  userId: number
   _all: number
 }
 
@@ -98,6 +104,8 @@ export type WhisperMinAggregateInputType = {
   likes?: true
   loves?: true
   supports?: true
+  password?: true
+  userId?: true
 }
 
 export type WhisperMaxAggregateInputType = {
@@ -109,6 +117,8 @@ export type WhisperMaxAggregateInputType = {
   likes?: true
   loves?: true
   supports?: true
+  password?: true
+  userId?: true
 }
 
 export type WhisperCountAggregateInputType = {
@@ -120,6 +130,8 @@ export type WhisperCountAggregateInputType = {
   likes?: true
   loves?: true
   supports?: true
+  password?: true
+  userId?: true
   _all?: true
 }
 
@@ -218,6 +230,8 @@ export type WhisperGroupByOutputType = {
   likes: number
   loves: number
   supports: number
+  password: string | null
+  userId: string | null
   _count: WhisperCountAggregateOutputType | null
   _avg: WhisperAvgAggregateOutputType | null
   _sum: WhisperSumAggregateOutputType | null
@@ -252,6 +266,8 @@ export type WhisperWhereInput = {
   likes?: Prisma.IntFilter<"Whisper"> | number
   loves?: Prisma.IntFilter<"Whisper"> | number
   supports?: Prisma.IntFilter<"Whisper"> | number
+  password?: Prisma.StringNullableFilter<"Whisper"> | string | null
+  userId?: Prisma.StringNullableFilter<"Whisper"> | string | null
   responses?: Prisma.ResponseListRelationFilter
 }
 
@@ -264,6 +280,8 @@ export type WhisperOrderByWithRelationInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   responses?: Prisma.ResponseOrderByRelationAggregateInput
 }
 
@@ -279,6 +297,8 @@ export type WhisperWhereUniqueInput = Prisma.AtLeast<{
   likes?: Prisma.IntFilter<"Whisper"> | number
   loves?: Prisma.IntFilter<"Whisper"> | number
   supports?: Prisma.IntFilter<"Whisper"> | number
+  password?: Prisma.StringNullableFilter<"Whisper"> | string | null
+  userId?: Prisma.StringNullableFilter<"Whisper"> | string | null
   responses?: Prisma.ResponseListRelationFilter
 }, "id">
 
@@ -291,6 +311,8 @@ export type WhisperOrderByWithAggregationInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.WhisperCountOrderByAggregateInput
   _avg?: Prisma.WhisperAvgOrderByAggregateInput
   _max?: Prisma.WhisperMaxOrderByAggregateInput
@@ -310,6 +332,8 @@ export type WhisperScalarWhereWithAggregatesInput = {
   likes?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
   loves?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
   supports?: Prisma.IntWithAggregatesFilter<"Whisper"> | number
+  password?: Prisma.StringNullableWithAggregatesFilter<"Whisper"> | string | null
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Whisper"> | string | null
 }
 
 export type WhisperCreateInput = {
@@ -320,6 +344,8 @@ export type WhisperCreateInput = {
   likes?: number
   loves?: number
   supports?: number
+  password?: string | null
+  userId?: string | null
   responses?: Prisma.ResponseCreateNestedManyWithoutWhisperInput
 }
 
@@ -332,6 +358,8 @@ export type WhisperUncheckedCreateInput = {
   likes?: number
   loves?: number
   supports?: number
+  password?: string | null
+  userId?: string | null
   responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutWhisperInput
 }
 
@@ -343,6 +371,8 @@ export type WhisperUpdateInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   responses?: Prisma.ResponseUpdateManyWithoutWhisperNestedInput
 }
 
@@ -355,6 +385,8 @@ export type WhisperUncheckedUpdateInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   responses?: Prisma.ResponseUncheckedUpdateManyWithoutWhisperNestedInput
 }
 
@@ -367,6 +399,8 @@ export type WhisperCreateManyInput = {
   likes?: number
   loves?: number
   supports?: number
+  password?: string | null
+  userId?: string | null
 }
 
 export type WhisperUpdateManyMutationInput = {
@@ -377,6 +411,8 @@ export type WhisperUpdateManyMutationInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WhisperUncheckedUpdateManyInput = {
@@ -388,6 +424,8 @@ export type WhisperUncheckedUpdateManyInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WhisperCountOrderByAggregateInput = {
@@ -399,6 +437,8 @@ export type WhisperCountOrderByAggregateInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type WhisperAvgOrderByAggregateInput = {
@@ -417,6 +457,8 @@ export type WhisperMaxOrderByAggregateInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type WhisperMinOrderByAggregateInput = {
@@ -428,6 +470,8 @@ export type WhisperMinOrderByAggregateInput = {
   likes?: Prisma.SortOrder
   loves?: Prisma.SortOrder
   supports?: Prisma.SortOrder
+  password?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type WhisperSumOrderByAggregateInput = {
@@ -462,6 +506,10 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type WhisperCreateNestedOneWithoutResponsesInput = {
   create?: Prisma.XOR<Prisma.WhisperCreateWithoutResponsesInput, Prisma.WhisperUncheckedCreateWithoutResponsesInput>
   connectOrCreate?: Prisma.WhisperCreateOrConnectWithoutResponsesInput
@@ -484,6 +532,8 @@ export type WhisperCreateWithoutResponsesInput = {
   likes?: number
   loves?: number
   supports?: number
+  password?: string | null
+  userId?: string | null
 }
 
 export type WhisperUncheckedCreateWithoutResponsesInput = {
@@ -495,6 +545,8 @@ export type WhisperUncheckedCreateWithoutResponsesInput = {
   likes?: number
   loves?: number
   supports?: number
+  password?: string | null
+  userId?: string | null
 }
 
 export type WhisperCreateOrConnectWithoutResponsesInput = {
@@ -521,6 +573,8 @@ export type WhisperUpdateWithoutResponsesInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WhisperUncheckedUpdateWithoutResponsesInput = {
@@ -532,6 +586,8 @@ export type WhisperUncheckedUpdateWithoutResponsesInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   loves?: Prisma.IntFieldUpdateOperationsInput | number
   supports?: Prisma.IntFieldUpdateOperationsInput | number
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -574,6 +630,8 @@ export type WhisperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   likes?: boolean
   loves?: boolean
   supports?: boolean
+  password?: boolean
+  userId?: boolean
   responses?: boolean | Prisma.Whisper$responsesArgs<ExtArgs>
   _count?: boolean | Prisma.WhisperCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["whisper"]>
@@ -587,6 +645,8 @@ export type WhisperSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   likes?: boolean
   loves?: boolean
   supports?: boolean
+  password?: boolean
+  userId?: boolean
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -598,6 +658,8 @@ export type WhisperSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   likes?: boolean
   loves?: boolean
   supports?: boolean
+  password?: boolean
+  userId?: boolean
 }, ExtArgs["result"]["whisper"]>
 
 export type WhisperSelectScalar = {
@@ -609,9 +671,11 @@ export type WhisperSelectScalar = {
   likes?: boolean
   loves?: boolean
   supports?: boolean
+  password?: boolean
+  userId?: boolean
 }
 
-export type WhisperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "content" | "createdAt" | "updatedAt" | "likes" | "loves" | "supports", ExtArgs["result"]["whisper"]>
+export type WhisperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "category" | "content" | "createdAt" | "updatedAt" | "likes" | "loves" | "supports" | "password" | "userId", ExtArgs["result"]["whisper"]>
 export type WhisperInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   responses?: boolean | Prisma.Whisper$responsesArgs<ExtArgs>
   _count?: boolean | Prisma.WhisperCountOutputTypeDefaultArgs<ExtArgs>
@@ -633,6 +697,8 @@ export type $WhisperPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     likes: number
     loves: number
     supports: number
+    password: string | null
+    userId: string | null
   }, ExtArgs["result"]["whisper"]>
   composites: {}
 }
@@ -1065,6 +1131,8 @@ export interface WhisperFieldRefs {
   readonly likes: Prisma.FieldRef<"Whisper", 'Int'>
   readonly loves: Prisma.FieldRef<"Whisper", 'Int'>
   readonly supports: Prisma.FieldRef<"Whisper", 'Int'>
+  readonly password: Prisma.FieldRef<"Whisper", 'String'>
+  readonly userId: Prisma.FieldRef<"Whisper", 'String'>
 }
     
 

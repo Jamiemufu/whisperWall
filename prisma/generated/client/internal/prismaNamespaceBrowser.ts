@@ -79,7 +79,9 @@ export const WhisperScalarFieldEnum = {
   updatedAt: 'updatedAt',
   likes: 'likes',
   loves: 'loves',
-  supports: 'supports'
+  supports: 'supports',
+  password: 'password',
+  userId: 'userId'
 } as const
 
 export type WhisperScalarFieldEnum = (typeof WhisperScalarFieldEnum)[keyof typeof WhisperScalarFieldEnum]

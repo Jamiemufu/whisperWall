@@ -2,7 +2,7 @@
   <UPageCard
     :title="whisper.content"
     variant="subtle"
-    class="bg-primary-100/20 bg-[url(/img/clouds.png)] rounded-xl"
+    class="bg-primary-100/20 bg-[url(/img/clouds.png)] bg-top-left rounded-xl"
     :ui="{
       header: 'flex gap-2 w-full justify-between items-center capitalize flex-row font-semibold',
       body: 'w-full',
@@ -24,7 +24,11 @@
     <!-- body -->
     <template #body>
       <WhisperContent :whisperContent="whisper.content" :whisperDate="whisper.createdAt" />
-      <WhisperReplies :responses="whisper.responses" v-if="whisper.responses.length" />
+      <div class="flex w-full flex-row gap-4">
+        <USeparator orientation="vertical" class="h-auto mt-4 mb-4 ml-4"/>
+        <WhisperReplies :responses="whisper.responses" v-if="whisper.responses.length" />
+      </div>
+      
     </template>
     <!-- footer -->
     <template #footer>

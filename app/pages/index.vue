@@ -10,43 +10,39 @@
       description: 'text-normal',
     }"
   />
-  <UPageSection title="Most Recent Whispers" description="Help, motivate and support people in need with our most recent whispers">
+  <UPageSection title="Recent Whispers" description="Help, motivate and support people in need with our most recent whispers">
     <UPageColumns>
-      <WhisperCardQuick v-for="whisper in data" :key="whisper.id" :whisper="whisper" />
+      <WhisperCardQuick v-for="whisper in whispers" :key="whisper.id" :whisper="whisper" />
     </UPageColumns>
   </UPageSection>
 
-  <ShareWhisperModal v-if="modal.isOpen" @close="modal.close()" />
+  <ShareWhisperModal v-model:open="isModalOpen" @close="closeModal" @created="refresh" />
 </template>
 <script lang="ts" setup>
 import type { ButtonProps } from "@nuxt/ui";
 import ShareWhisperModal from "~/components/Modals/ShareWhisperModal.vue";
 import type { Whisper, Response } from "~~/prisma/generated/client/client";
 
-const { data } = await useAsyncData("whispers", () => $fetch<(Whisper & { responses: Response[] })[]>("/api/whisper"), {
-  immediate: true,
-});
+const { data: whispers, refresh } = await useAsyncData("whispers", () => $fetch<(Whisper & { responses: Response[] })[]>("/api/whisper"), { immediate: true });
+
+const isModalOpen = ref(false);
 
 const links = ref<ButtonProps[]>([
   {
     label: "Create a whisper",
     variant: "solid",
     size: "xl",
-    onClick: openModal,
-  },
-  {
-    label: "Support someone",
-    to: "#",
-    variant: "solid",
-    size: "xl",
-    color: "primary",
+    onClick: () => {
+      openModal();
+    },
   },
 ]);
 
-const overlay = useOverlay();
-const modal = overlay.create(ShareWhisperModal);
-
 function openModal() {
-  modal.open();
+  isModalOpen.value = true;
+}
+
+function closeModal() {
+  isModalOpen.value = false;
 }
 </script>

@@ -18,7 +18,7 @@ const seed = async () => {
   for (let i = 0; i < 200; i++) {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     const responseCount = faker.number.int({ min: 1, max: 4 });
-    const randomWhisper = faker.lorem.sentence();
+    const randomWhisper = faker.word.words({ count: { min: 10, max: 20 } });
     await prisma.whisper.create({
       data: {
         category: randomCategory,
@@ -29,15 +29,15 @@ const seed = async () => {
         responses: {
           create: Array.from({ length: responseCount }, () => ({
             category: responseCategories[Math.floor(Math.random() * responseCategories.length)],
-            content: faker.lorem.sentence(),
+            content: faker.word.words({ count: { min: 10, max: 20 } }),
           })),
         },
       },
     });
   }
-}
+};
 
 seed().then(() => {
   console.log("Seeding completed!");
   prisma.$disconnect();
-})
+});

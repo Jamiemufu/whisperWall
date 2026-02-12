@@ -1,14 +1,14 @@
 <template>
-  <div class="flex gap-1 cursor-pointer">
-    <UIcon name="i-lucide-hand-fist" size="xl" class="w-5 h-5 text-warning" @click="giveSupport" />
+  <div class="flex gap-1 cursor-pointer" @click="giveSupport">
+    <UIcon name="i-lucide-hand-fist" size="xl" class="w-5 h-5 text-warning" />
     <span>{{ supports }}</span>
   </div>
 </template>
 <script lang="ts" setup>
-import type { Whisper } from '~~/prisma/generated/client/client';
+import type { Whisper } from "~~/prisma/generated/client/client";
 
 const props = defineProps<{
-  supports: number
+  supports: number;
   whisperId: number;
 }>();
 

@@ -22,6 +22,8 @@ model Whisper {
   likes     Int      @default(0)
   loves     Int      @default(0)
   supports  Int      @default(0)
+  password  String? // Optional password for editing/deleting the whisper
+  userId    String? // Optional user ID to be used in localstorage for edit/delete permissions
   responses Response[]
 }
 

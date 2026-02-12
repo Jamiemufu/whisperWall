@@ -24,11 +24,11 @@
             <URadioGroup
               v-model="state.category"
               :items="categoriesRadioItems"
-              size="xl"
+              size="xs"
               variant="table"
               required
               :ui="{
-                label: 'capitalize',
+                label: 'capitalize text-base',
                 fieldset: 'py-4',
                 item: 'items-center',
               }"
@@ -55,6 +55,21 @@
           </UFormField>
         </div>
 
+        <div class="bg-white p-4 rounded-2xl mb-4">
+          <UFormField
+            label="Enter a password"
+            description="This password will be required if you want to edit or delete your whisper in the future. Make sure to remember it!"
+            hint="optional"
+            name="password"
+            class="text-base"
+            :ui="{
+              label: 'font-bold',
+            }"
+          >
+            <UInput v-model="state.password" type="password" class="w-full text-base mt-2" placeholder="Enter your password here..." size="xl" trailing-icon="i-lucide-lock-keyhole" />
+          </UFormField>
+        </div>
+
         <UButton type="submit" variant="solid" color="neutral" block size="xl">Post Whisper</UButton>
       </UForm>
     </template>
@@ -63,15 +78,16 @@
 <script lang="ts" setup>
 import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
-const toast = useToast()
+const toast = useToast();
 
-const emits = defineEmits(["close"]);
+const emits = defineEmits(["created", "close"]);
 
 type Schema = z.infer<typeof shareWhisperSchema>;
 
 const state = reactive<Partial<Schema>>({
   category: undefined,
   whisper: "",
+  password: "",
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
@@ -81,6 +97,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       body: event.data,
     });
     // Emit the close event to close the modal
+    emits("created");
+    resetForm();
     emits("close");
     // Show a success toast notification
     toast.add({
@@ -97,5 +115,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       icon: "i-heroicons-x-circle-solid",
     });
   }
+}
+
+function resetForm() {
+  state.category = undefined;
+  state.whisper = "";
+  state.password = "";
 }
 </script>

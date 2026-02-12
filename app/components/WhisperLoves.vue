@@ -1,6 +1,6 @@
 <template>
-  <div class="flex gap-1 cursor-pointer">
-    <UIcon name="i-lucide-heart" size="xl" class="w-5 h-5 text-error" @click="giveLove" />
+  <div class="flex gap-1 cursor-pointer" @click="giveLove">
+    <UIcon name="i-lucide-heart" size="xl" class="w-5 h-5 text-error" />
     <span>{{ loves }}</span>
   </div>
 </template>

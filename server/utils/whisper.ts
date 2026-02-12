@@ -5,30 +5,38 @@ import { Category } from "~~/prisma/generated/client/enums";
  * Get all whispers from the database, ordered by creation date (newest first).
  * @returns Whisper[] - An array of Whisper objects.
  */
-export const getWhispers = async (take?: number): Promise<(Whisper & { responses: Response[] })[]> => {
+export const getWhispers = async (take?: number): Promise<(Omit<Whisper, "password" | "userId"> & { responses: Response[] })[]> => {
   return await prisma.whisper.findMany({
     take: take,
+    select: {
+      id: true,
+      category: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true,
+      likes: true,
+      loves: true,
+      supports: true,
+      responses: true,
+    },
     orderBy: {
       createdAt: "desc",
     },
-    include: {
-      responses: true,
-    },
   });
-}
+};
 
 /**
  * Get a single whisper by its ID.
  * @param id number
  * @returns Whisper
  */
-export const getWhisperById = async (id: number): Promise<Whisper | null> => {
+export const getWhisperById = async (id: number): Promise<Omit<Whisper, "password" | "userId"> | null> => {
   return await prisma.whisper.findUnique({
     where: {
       id,
     },
   });
-}
+};
 
 /**
  * Get all whispers from the database that match a specific category, ordered by creation date (newest first).
@@ -44,22 +52,23 @@ export const getWhispersByCategory = async (category: Category): Promise<Whisper
       createdAt: "desc",
     },
   });
-}
+};
 
 /**
- * 
+ *
  * @param category Whisper Category
  * @param content string content
  * @returns Whisper
  */
-export const createWhisper = async (category: Category, content: string): Promise<Whisper> => {
+export const createWhisper = async (category: Category, content: string, password?: string): Promise<Whisper> => {
   return await prisma.whisper.create({
     data: {
       category,
       content: content,
+      password,
     },
   });
-}
+};
 
 /**
  * Increment the love count of a whisper by 1.
@@ -75,9 +84,9 @@ export const giveWhisperLove = async (whisperId: number): Promise<Whisper | null
       loves: {
         increment: 1,
       },
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * increment the like count of a whisper by 1.
@@ -93,9 +102,9 @@ export const giveWhisperLikes = async (whisperId: number): Promise<Whisper | nul
       likes: {
         increment: 1,
       },
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * increment the Supports count of a whisper by 1.
@@ -111,6 +120,6 @@ export const giveWhisperSupports = async (whisperId: number): Promise<Whisper | 
       supports: {
         increment: 1,
       },
-    }
-  })
-}
+    },
+  });
+};
