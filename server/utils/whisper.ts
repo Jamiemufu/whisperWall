@@ -35,6 +35,17 @@ export const getWhisperById = async (id: number): Promise<Omit<Whisper, "passwor
     where: {
       id,
     },
+    select: {
+      id: true,
+      category: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true,
+      likes: true,
+      loves: true,
+      supports: true,
+      responses: true,
+    },
   });
 };
 
