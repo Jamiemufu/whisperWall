@@ -15,16 +15,29 @@
     </template>
     <!-- body -->
     <template #body>
-      <WhisperContent :whisperContent="whisper.content" :whisperDate="whisper.createdAt" />
+      <WhisperContent
+        :whisperContent="whisper.content"
+        :whisperDate="whisper.createdAt"
+      />
       <WhisperQuickReplies :responses="whisper.responses" :limit="2" />
     </template>
     <!-- footer -->
     <template #footer>
       <div class="flex gap-2 pt-2">
-        <UButton variant="solid" size="md" @click="openViewModal(whisper.id)">View</UButton>
-        <UButton variant="outline" size="md" color="neutral" @click="openModal(whisper.content, whisper.id)">Support</UButton>
+        <UButton variant="solid" size="md" @click="openViewModal(whisper.id)"
+          >View</UButton
+        >
+        <UButton
+          variant="outline"
+          size="md"
+          color="neutral"
+          @click="openModal(whisper.content, whisper.id)"
+          >Support</UButton
+        >
       </div>
-      <UButton variant="link" size="md" color="error" icon="i-lucide-circle-x">Report</UButton>
+      <UButton variant="link" size="md" color="error" icon="i-lucide-circle-x"
+        >Report</UButton
+      >
     </template>
   </UPageCard>
 </template>
@@ -37,6 +50,8 @@ defineProps<{
   whisper: Whisper & { responses: Response[] };
 }>();
 
+const emit = defineEmits(["refresh"]);
+
 const overlay = useOverlay();
 const supportModal = overlay.create(SupportWhisperModal);
 
@@ -46,7 +61,15 @@ function openModal(whisperContent: string, whisperId: number) {
 
 const whisperViewModal = overlay.create(ViewWhisperModal);
 
-function openViewModal(whisperId: number) { 
-  whisperViewModal.open({ whisperId }); 
+function openViewModal(whisperId: number) {
+  const instance = whisperViewModal.open({ whisperId });
+
+  instance.result.then(() => {
+    closeModal();
+  });
+}
+function closeModal() {
+  emit("refresh");
+  ViewWhisperModal.close();
 }
 </script>
